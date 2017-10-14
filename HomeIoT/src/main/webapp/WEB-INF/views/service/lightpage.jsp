@@ -13,11 +13,16 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<!-- TTS CDN -->
+    <script src="/js/talkify/talkify.min.js"></script>
 </head>
 <body>
 	<input type="hidden" id="room1value" value="${room1value}">
 	<input type="hidden" id="room2value" value="${room2value}">
 	<input type="hidden" id="room3value" value="${room3value}">
+	<div>
+		<input type="button" id="infobutton" value="요약">
+	</div>
 	<div>
 		<img style="margin: auto" width="800" height="700" src="/images/house.png">
 	</div>
@@ -51,7 +56,36 @@
 </body>
 <script type="text/javascript">
 $(function(){
-	
+	$('#infobutton').click(function(){
+		var infostr = "";
+		
+		var player = new talkify.Html5Player();
+		
+		var room1value = $('#room1value').val();
+		var room2value = $('#room2value').val();
+		var room3value = $('#room3value').val();
+		
+		if(room1value > 120){
+			infostr += "침실1 불 꺼짐,";
+		} else if(room1value <= 120){
+			infostr += "침실1 불 켜짐,";
+		}
+		
+		if(room2value > 120){
+			infostr += "침실2 불 꺼짐";
+		} else if(room2value <= 120){
+			infostr += "침실2 불 켜짐,";
+		}
+		
+		if(room3value > 120){
+			infostr += "침실3 불 꺼짐,";
+		} else if(room3value <= 120){
+			infostr += "침실3 불 켜짐,";
+		}
+		
+		//데이터 셋팅//
+		player.playText(infostr);
+	});
 });
 </script>
 </html>

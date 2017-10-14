@@ -19,6 +19,12 @@ public class UserDetailInfo {
 	@Column(name="user_address")
 	private String user_address;
 	
+	@Column(name="user_phonenumber")
+	private String user_phonenumber;
+	
+	@Column(name="user_name")
+	private String user_name;
+
 	@OneToMany 
 	@JoinColumn(name="user_id") 
 	private List<SensorValue> sensorvalue;
@@ -45,5 +51,21 @@ public class UserDetailInfo {
 
 	public void setUser_address(String user_address) {
 		this.user_address = user_address;
+	}
+	
+	public String getUser_phonenumber() {
+		return user_phonenumber;
+	}
+
+	public void setUser_phonenumber(String user_phonenumber) {
+		this.user_phonenumber = user_phonenumber;
+	}
+
+	public String getUser_name() {
+		return user_name;
+	}
+
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
 	}
 }

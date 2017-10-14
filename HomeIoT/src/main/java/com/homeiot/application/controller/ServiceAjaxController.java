@@ -20,32 +20,19 @@ public class ServiceAjaxController {
 	@Autowired
 	UserDataService userDataService;
 	
-	@RequestMapping(value = "/userinfo", method = RequestMethod.POST, produces = {"application/json"})
-	public @ResponseBody Map<String, Object> getUserInfo(@RequestBody Map<String, Object> info) {	
-		System.out.println("get user id: " + info.get("user_id"));
-		
-		List<UserInfo> userinfo = userDataService.getUserInfo(info.get("user_id").toString());
-		
-		System.out.println("user address: " + userinfo.get(0).getUser_address());
-		
-		Map<String, Object> retVal = new HashMap<String, Object>();
-		retVal.put("result", "success!!");
-		
-		return retVal;
-	}
-	
 	@RequestMapping(value = "/userdetailinfo", method = RequestMethod.POST, produces = {"application/json"})
 	public @ResponseBody Map<String, Object> getUserDetailInfo(@RequestBody Map<String, Object> info) {	
 		System.out.println("get detail user id: " + info.get("user_id"));
 		
 		List<UserDetailInfo> userdetailinfo = userDataService.getUserDetailInfo(info.get("user_id").toString());
 		
-		System.out.println("==> user address: " + userdetailinfo.get(0).getUser_address());
-		System.out.println("==> sensor name: " + userdetailinfo.get(0).getSensorvalue().get(0).getSensor_name());
-		System.out.println("==> sensor name: " + userdetailinfo.get(0).getSensorvalue().get(1).getSensor_name());
-		
 		Map<String, Object> retVal = new HashMap<String, Object>();
+		
 		retVal.put("result", "success!!");
+		retVal.put("useraddress", userdetailinfo.get(0).getUser_address());
+		retVal.put("username", userdetailinfo.get(0).getUser_name());
+		retVal.put("userphonenumber", userdetailinfo.get(0).getUser_phonenumber());
+		retVal.put("usersensor", userdetailinfo.get(0).getSensorvalue());
 		
 		return retVal;
 	}

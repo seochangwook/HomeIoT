@@ -25,6 +25,7 @@ public class HomeController {
 		
 		mv.addObject("serverip", serverIP);
 		mv.addObject("serverport", serverPORT);
+		mv.addObject("user_id", "scw3315");
 		
 		return mv;
     }
