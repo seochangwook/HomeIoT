@@ -15,6 +15,8 @@
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 </head>
 <body>
+	<input type="hidden" id="serverip" value="${serverip}">
+	<input type="hidden" id="serverport" value="${serverport}">
 	<img style="margin: auto" width="800" height="700" src="/images/smarthouse.png">
 	<div>
 		<input type="button" id="user_info_button" value="user info">
@@ -27,6 +29,8 @@
 <script type="text/javascript">
 $(function(){
 	$('#user_info_button').click(function(){
+		var serverip = $('#serverip').val();
+		var serverport = $('#serverport').val();
 		var userid = 'scw3315';
 		
 		var trans_objeect = 
@@ -36,7 +40,7 @@ $(function(){
 		var trans_json = JSON.stringify(trans_objeect); //json으로 반환//
 		
 		$.ajax({
-			url: "http://172.30.1.2:8000/userinfo",
+			url: "http://"+serverip+":"+serverport+"/userinfo",
 			type: 'POST',
 			dataType: 'json',
 			data: trans_json,
@@ -52,6 +56,8 @@ $(function(){
 	});
 	
 	$('#user_detailinfo_button').click(function(){
+		var serverip = $('#serverip').val();
+		var serverport = $('#serverport').val();
 		var userid = 'scw3315';
 		
 		var trans_objeect = 
@@ -61,7 +67,7 @@ $(function(){
 		var trans_json = JSON.stringify(trans_objeect); //json으로 반환//
 		
 		$.ajax({
-			url: "http://172.30.1.2:8000/userdetailinfo",
+			url: "http://"+serverip+":"+serverport+"/userdetailinfo",
 			type: 'POST',
 			dataType: 'json',
 			data: trans_json,

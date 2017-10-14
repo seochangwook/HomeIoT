@@ -19,28 +19,15 @@ public class UserDataServiceImpl implements UserDataService{
 	
 	@Override
 	public List<UserInfo> getUserInfo(String user_id) {
-		System.out.println("service call");
-		
 		userDataDao.findAll();
 		//데이터 추출//
-		List<UserInfo> userinfo = userDataDao.getUserInfo(user_id);
-		
-		System.out.println("user address: " + userinfo.get(0).getUser_address());
-		
-		return userinfo;
+		 return userDataDao.getUserInfo(user_id);
 	}
 
 	@Override
-	public List<UserInfo> getUserDetailInfo(String user_id) {
+	public List<UserDetailInfo> getUserDetailInfo(String user_id) {
 		userDataDao.findAll();
 		
-		List<UserDetailInfo> userdetailinfo = userDetailDataDao.getUserDetailInfo(user_id);
-		
-		System.out.println("user detail service call");
-		
-		System.out.println("==> user address: " + userdetailinfo.get(0).getUser_address());
-		System.out.println("==> sensor name: " + userdetailinfo.get(0).getSensorvalue().get(0).getSensor_name());
-		
-		return null;
+		 return userDetailDataDao.getUserDetailInfo(user_id);
 	}
 }

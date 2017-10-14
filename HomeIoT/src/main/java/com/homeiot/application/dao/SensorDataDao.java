@@ -28,6 +28,20 @@ public interface SensorDataDao extends JpaRepository<SensorValue, String>{
 			@Param("modifydate") String modifydate,
 			@Param("user_id") String user_id);
 	
+	@Transactional
+	@Modifying
+	@Query(nativeQuery = true, value=
+			"UPDATE sensorvalue "
+			+ "SET sensor_value_1 = :room1value, sensor_value_2 = :room2value, sensor_value_3 = :room3value, sensor_modify_date = :modifydate "
+			+ "WHERE sensor_id = '10002' AND user_id like %:user_id%"
+	)
+	int saveLightSensorData(
+			@Param("room1value") String room1value, 
+			@Param("room2value") String room2value, 
+			@Param("room3value") String room3value,
+			@Param("modifydate") String modifydate,
+			@Param("user_id") String user_id);
+	
 	@Query(nativeQuery = true, value=
 			"SELECT sensor_id, user_id "
 			+ "FROM sensorvalue "
@@ -36,5 +50,4 @@ public interface SensorDataDao extends JpaRepository<SensorValue, String>{
 	List<SensorValue> getSensordata(
 			@Param("sensor_id") String sensor_id, 
 			@Param("user_id") String user_id);
-	
 }

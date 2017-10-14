@@ -25,4 +25,18 @@ public class SensorDataServiceImpl implements SensorDataService{
 		
 		return sensorDataDao.getSensordata(sensor_id, user_id);
 	}
+
+	@Override
+	public int lightdataSave(String room1value, String room2value, String room3value, String date, String user_id) {
+		sensorDataDao.findAll();
+		
+		return sensorDataDao.saveLightSensorData(room1value, room2value, room3value, date, user_id);
+	}
+
+	@Override
+	public List<SensorValue> getlightdata(String sensor_id, String user_id) {
+		sensorDataDao.findAll();
+		
+		return sensorDataDao.getSensordata(sensor_id, user_id);
+	}
 }

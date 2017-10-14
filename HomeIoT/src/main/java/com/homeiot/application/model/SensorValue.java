@@ -26,6 +26,9 @@ public class SensorValue {
 	@Column(name="sensor_value_2")
 	private String sensor_value_2;
 	
+	@Column(name="sensor_value_3")
+	private String sensor_value_3;
+	
 	@Column(name="sensor_reg_date")
 	private Date sensor_reg_date;
 	
@@ -62,6 +65,14 @@ public class SensorValue {
 
 	public void setSensor_value_2(String sensor_value_2) {
 		this.sensor_value_2 = sensor_value_2;
+	}
+
+	public String getSensor_value_3() {
+		return sensor_value_3;
+	}
+
+	public void setSensor_value_3(String sensor_value_3) {
+		this.sensor_value_3 = sensor_value_3;
 	}
 
 	public Date getSensor_reg_date() {

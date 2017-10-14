@@ -13,8 +13,13 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<!-- TTS CDN -->
+    <script src="/js/talkify/talkify.min.js"></script>
 </head>
 <body>
+	<div>
+		<input type="button" id="infobutton" value="요약">
+	</div>
 	<div style="float: left">
 		<h2>* 현재 온도: </h2>
 		<c:if test="${tempvalue == -1}">
@@ -65,7 +70,16 @@ config1.waveHeight = 0.3;
 config1.waveCount = 1;
 //////////////////////////////
 $(function(){
-	
+	$('#infobutton').click(function(){
+		var player = new talkify.Html5Player();
+		
+		var tempvalue = $('#tempvalue').val();
+		var humivalue = $('#humivalue').val();
+		
+		//데이터 셋팅//
+		var sayinfo = "현재 집안의 온도는 " + tempvalue + "도 이고, 습도는 " + humivalue + "%입니다."
+		player.playText(sayinfo);
+	});
 });
 </script>
 </html>
