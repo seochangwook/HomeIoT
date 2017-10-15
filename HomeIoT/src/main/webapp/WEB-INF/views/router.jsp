@@ -29,6 +29,9 @@
     </style>
 </head>
 <body>
+	<input type="hidden" id="serverip" value="${serverip}">
+	<input type="hidden" id="serverport" value="${serverport}">
+	<input type="hidden" id="usersession" value="${userid})">
 	<!-- ui-view는 페이지 주입 위치이다. -->
 	<nav class="navbar navbar-inverse">
 		<div class="center" style="text-align: center">
@@ -46,13 +49,40 @@
 		    	<li><a href="#!light">우리집 조도량</a></li>
     		</ul>
     		<ul class="nav navbar-nav navbar-right">
-		    	<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-		    	<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    			<c:if test="${userid == null}">
+    				<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+		    		<li><a href="#"><span class="glyphicon glyphicon-log-in" id="logoutbutton"></span> Login</a></li>
+    			</c:if>
+    			<c:if test="${userid != null}">
+    				<li><a href="#"><span class="glyphicon glyphicon-log-out" id="logoutbutton"></span> Logout</a></li>
+    			</c:if>
     		</ul>
   		</div>
 	</nav>
 	<div ui-view>
-		<img style="margin: auto" width="800" height="700" src="/images/smarthouse.png">
+		<img style="margin: auto" width="800" height="700" src="/images/mainimage.png">
 	</div>
 </body>
+<script type="text/javascript">
+$(function(){
+	$('#logoutbutton').click(function(){
+		var serverip = $('#serverip').val();
+		var serverport = $('#serverport').val();
+		
+		$.ajax({
+			url: "http://"+serverip+":"+serverport+"/logoutajax",
+			type: 'POST',
+			contentType: 'application/json',
+			mimeType: 'application/json',
+			success: function(retVal){
+				var url = "http://"+serverip+":"+serverport+"/login.do";
+		        $(location).attr("href", url);
+			},
+			error: function(retVal, status, er){
+				console.log('logout fail...');
+			}
+		});
+	});
+});
+</script>
 </html>

@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,7 +27,13 @@ public class HomeController {
 		
 		mv.addObject("serverip", serverIP);
 		mv.addObject("serverport", serverPORT);
-		mv.addObject("user_id", "scw3315");
+		
+		//세션 등록//
+		//사용자 정보 출력(세션)//
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		System.out.println("user name :" + user.getUsername());
+		
+		mv.addObject("user_id", user.getUsername());
 		
 		return mv;
     }
