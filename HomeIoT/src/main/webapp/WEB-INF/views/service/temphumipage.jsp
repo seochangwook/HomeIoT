@@ -39,6 +39,9 @@
 			<svg id="fillgauge2" width="97%" height="250" onclick="gauge2.update('${humivalue}');"></svg>
 		</c:if>
 	</div>
+	<br>
+	<iframe width="420" height="345" src="https://www.youtube.com/embed/lA0U5yPn7mg">
+	</iframe>
 </body>
 <script type="text/javascript">
 var tempvalue = document.getElementById("tempvalue").value;

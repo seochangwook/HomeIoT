@@ -112,7 +112,7 @@ $(function(){
 	$('#info').click(function(){
 		player.pause();
 		player.dispose();
-		var sayinfo = username + "홈 메뉴는 사용자의 기본 정보를 알 수 있습니다. 우리집 온도,습도 메뉴는 현재 집안의 온도와 습도 정보를 알 수 잇씁니다. 우리집 조도량 메뉴는 현재 집안에 불이 켜진곳과 꺼진 곳을 알 수 있습니다.";
+		var sayinfo = "홈 메뉴는 사용자의 기본 정보를 알 수 있습니다. 우리집 온도,습도 메뉴는 현재 집안의 온도와 습도 정보를 알 수 잇씁니다. 우리집 조도량 메뉴는 현재 집안에 불이 켜진곳과 꺼진 곳을 알 수 있습니다.";
 		player.playText(sayinfo);	
 	});
 });

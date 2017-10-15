@@ -42,6 +42,8 @@ public class SensorAjaxController {
 				date,
 				info.get("user_id").toString());
 		
+		System.out.println("==> result: " + result);
+		
 		if(result == 1){
 			retVal.put("result", "success!!");
 		} else{
@@ -67,6 +69,8 @@ public class SensorAjaxController {
 				info.get("ldr3value").toString(), 
 				date,
 				info.get("user_id").toString());
+		
+		System.out.println("==> result: " + result);
 		
 		if(result == 1){
 			retVal.put("result", "success!!");

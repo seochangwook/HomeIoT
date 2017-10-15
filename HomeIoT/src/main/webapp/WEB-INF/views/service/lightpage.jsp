@@ -53,6 +53,9 @@
 			<img style="margin: auto" width="120" height="120" src="/images/light_on.png">
 		</c:if>
 	</div>
+	<br>
+	<iframe width="420" height="345" src="https://youtube.com/embed/dMjcCT0w7us">
+	</iframe>
 </body>
 <script type="text/javascript">
 $(function(){
