@@ -8,14 +8,15 @@
 <title>Login</title>
 </head>
 <body>
-	<h1>Custom UI Spring Security Test</h1>
+	<h1>Home IoT</h1>
 	<div>
 		<c:url value="/j_spring_security_check" var="loginUrl" />
 		<form action="${loginUrl}" method="POST">
         	ID : <input type="text" name="j_username" size="20" maxlength="50" /><br />
         	Password : <input type="password" name="j_password" size="20" maxlength="50" /><br />
-        <input type="submit" value="Login" />
-    </form>
+        	<input type="submit" value="Login" />
+    	</form>
 	</div>
+	
 </body>
 </html>

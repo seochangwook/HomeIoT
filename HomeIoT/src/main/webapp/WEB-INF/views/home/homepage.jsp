@@ -52,24 +52,16 @@ $(function(){
 		contentType: 'application/json',
 		mimeType: 'application/json',
 		success: function(retVal){
-			console.log('user detail info get success...');
-			
 			var infoStr = "";
 			
-			console.log('user name: ' + retVal.username);
 			infoStr += "<label>*이름: "+retVal.username+"</label><br>"
-			
-			console.log('user address: ' + retVal.useraddress);
 			infoStr += "<label>*주소: "+retVal.useraddress+"</label><br>"
-			
-			console.log('user phonenumber: ' + retVal.userphonenumber);
 			infoStr += "<label>*전화번호: "+retVal.userphonenumber+"</label><br>"
 			
 			var sensorarray = [];
 			sensorarray= retVal.usersensor;
 			
 			for(var i=0; i<retVal.usersensor.length; i++){
-				console.log('sensor name: ' + sensorarray[i].sensor_name);
 				infoStr += "<label>*가용센서: "+sensorarray[i].sensor_name+"</label><br>"
 			}
 			

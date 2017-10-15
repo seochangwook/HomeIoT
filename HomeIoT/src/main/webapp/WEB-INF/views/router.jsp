@@ -27,11 +27,16 @@
 	<style>
         .liquidFillGaugeText { font-family: Helvetica; font-weight: bold; }
     </style>
+    <!-- TTS CDN -->
+    <script src="/js/talkify/talkify.min.js"></script>
 </head>
 <body>
 	<input type="hidden" id="serverip" value="${serverip}">
 	<input type="hidden" id="serverport" value="${serverport}">
-	<input type="hidden" id="usersession" value="${userid})">
+	<input type="hidden" id="usersession" value="${userid}">
+	<input type="hidden" id="username" value="${username}">
+	<input type="hidden" id="useraddress" value="${useraddress}">
+	
 	<!-- ui-view는 페이지 주입 위치이다. -->
 	<nav class="navbar navbar-inverse">
 		<div class="center" style="text-align: center">
@@ -61,10 +66,30 @@
 	</nav>
 	<div ui-view>
 		<img style="margin: auto" width="800" height="700" src="/images/mainimage.png">
+		<br>
+		<div>
+			<input type="button" id="info" value="소개">
+		</div>
 	</div>
 </body>
 <script type="text/javascript">
 $(function(){
+	var player = new talkify.Html5Player();
+	var userid = $('#usersession').val();
+	var username = $('#username').val();
+	var useraddress = $('#useraddress').val();
+	
+	if(userid == null){
+		
+	} else {
+		//데이터 셋팅//
+		var sayinfo = username + " 님 환영합니다!! 저희 홈 서비스와 함께 즐거운 하루 보내세요. 현재 등록된 주소지는 " + useraddress + " 입니다.";
+		
+		player.pause();
+		player.dispose();
+		player.playText(sayinfo);	
+	}
+	
 	$('#logoutbutton').click(function(){
 		var serverip = $('#serverip').val();
 		var serverport = $('#serverport').val();
@@ -82,6 +107,13 @@ $(function(){
 				console.log('logout fail...');
 			}
 		});
+	});
+	
+	$('#info').click(function(){
+		player.pause();
+		player.dispose();
+		var sayinfo = username + "홈 메뉴는 사용자의 기본 정보를 알 수 있습니다. 우리집 온도,습도 메뉴는 현재 집안의 온도와 습도 정보를 알 수 잇씁니다. 우리집 조도량 메뉴는 현재 집안에 불이 켜진곳과 꺼진 곳을 알 수 있습니다.";
+		player.playText(sayinfo);	
 	});
 });
 </script>

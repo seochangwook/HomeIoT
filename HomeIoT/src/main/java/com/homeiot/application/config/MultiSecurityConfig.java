@@ -51,7 +51,7 @@ public class MultiSecurityConfig {
 	        	.csrf()
 	         	.disable()
 	         	.authorizeRequests()
-	         	.antMatchers("/")
+	         	.antMatchers("/main.do")
 	         	.hasRole("ADMIN")
 	         	.and()
 	         	.exceptionHandling().accessDeniedPage("/autherror.do")

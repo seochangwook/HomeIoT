@@ -9,6 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,7 +39,11 @@ public class ServiceController {
 		mv.setViewName("/service/temphumipage");
 		
 		//온도와 습도값을 가져온다.//
-		List<SensorValue> data = sensorDataService.gettemphumidata(temphumisensor_id, "scw3315");
+		//세션 등록//
+		//사용자 정보 출력(세션)//
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+		List<SensorValue> data = sensorDataService.gettemphumidata(temphumisensor_id, user.getUsername());
 		
 		System.out.println("sensor id: " + data.get(0).getId().getSensor_id());
 		
@@ -54,7 +60,10 @@ public class ServiceController {
 		mv.setViewName("/service/lightpage");
 		
 		//온도와 습도값을 가져온다.//
-		List<SensorValue> data = sensorDataService.getlightdata(lightsensor_id, "scw3315");
+		//사용자 정보 출력(세션)//
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+		List<SensorValue> data = sensorDataService.getlightdata(lightsensor_id, user.getUsername());
 
 		System.out.println("sensor id: " + data.get(0).getId().getSensor_id());
 		
