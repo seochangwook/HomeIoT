@@ -18,6 +18,9 @@ public class AuthController {
 	public ModelAndView login(ModelAndView mv) {
 		mv.setViewName("login/loginview");
 			
+		mv.addObject("serverip", serverIP);
+		mv.addObject("serverport", serverPORT);
+		
 		System.out.println("security login adjust");
 		
 		return mv;

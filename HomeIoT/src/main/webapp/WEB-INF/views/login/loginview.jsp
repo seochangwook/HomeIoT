@@ -17,6 +17,8 @@
 </head>
 <body>
 	<h1>Home IoT</h1>
+	<input type="hidden" id="serverip" value="${serverip}">
+	<input type="hidden" id="serverport" value="${serverport}">
 	<div>
 		<c:url value="/j_spring_security_check" var="loginUrl" />
 		<form action="${loginUrl}" method="POST">
@@ -84,14 +86,105 @@
           			<h4 class="modal-title">회원가입</h4>
         		</div>
         		<div class="modal-body">
-          			<p>This is a large modal.</p>
+          			<p>내용을 작성해주세요</p><br>
+          			<label>* ID:</label>&nbsp<input type="text" placeholder="input id" id="in_userid">&nbsp<input type="button" value="중복확인" id="dupcheck">
+          			<br>
+          			<label>* password:</label>&nbsp<input type="password" placeholder="input password" id="in_userpassword">
+          			<br>
+          			<label>* name:</label>&nbsp<input type="text" placeholder="input name" id="in_username">
+          			<br>
+          			<label>* address:</label>&nbsp<input type="text" placeholder="input address" id="in_useraddress">
+          			<br>
+          			<label>* phonenumber:</label>&nbsp<input type="text" placeholder="input phonenumber" id="in_userphonenumber">
+          			<Br>
+          			<label>* mail push:</label>&nbsp<input type="text" placeholder="0 - not push / 1 - push" id="in_usermailpush">
         		</div>
         		<div class="modal-footer">
           			<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+          			<button type="button" class="btn btn-default" data-dismiss="modal" id="enrollbutton">가입</button>
         		</div>
       		</div>
     	</div>
   	</div>
   	
 </body>
+<script type="text/javascript">
+$(function(){
+	$('#dupcheck').click(function(){
+		var serverip = $('#serverip').val();
+		var serverport = $('#serverport').val();
+		var input_id = $('#in_userid').val();
+		
+		var trans_objeect = 
+		{
+			'in_type':'1',
+		    'in_user_id':input_id
+		}
+		var trans_json = JSON.stringify(trans_objeect); //json으로 반환//
+		
+		$.ajax({
+			url: "http://"+serverip+":"+serverport+"/duplicatecheck",
+			type: 'POST',
+			dataType: 'json',
+			data: trans_json,
+			contentType: 'application/json',
+			mimeType: 'application/json',
+			success: function(retVal){
+				if(retVal.result == '1'){
+					alert('사용가능한 ID입니다.');
+				} else if(retVal.result == '0'){
+					alert('이미 등록된 ID입니다.');
+				}
+			},
+			error: function(retVal, status, er){
+				console.log("error: "+retVal+" status: "+status+" er:"+er);
+			}
+		});
+	});
+	$('#enrollbutton').click(function(){
+		var serverip = $('#serverip').val();
+		var serverport = $('#serverport').val();
+		
+		var input_id = $('#in_userid').val();
+		var input_password = $('#in_userpassword').val();
+		var input_name = $('#in_username').val();
+		var input_address = $('#in_useraddress').val();
+		var input_phonenumber = $('#in_userphonenumber').val();
+		var input_mailpush = $('#in_usermailpush').val();
+		var input_role = 'ROLE_ADMIN';
+		
+		var trans_objeect = 
+		{
+			'in_type':'2',
+		    'in_user_id':input_id,
+		    'in_userpassword':input_password,
+		    'in_username':input_name,
+		    'in_useraddress':input_address,
+		    'in_userphonenumber':input_phonenumber,
+		    'in_usermailpush':input_mailpush,
+		    'in_role':input_role
+		}
+		var trans_json = JSON.stringify(trans_objeect); //json으로 반환//
+		
+		$.ajax({
+			url: "http://"+serverip+":"+serverport+"/enroll",
+			type: 'POST',
+			dataType: 'json',
+			data: trans_json,
+			contentType: 'application/json',
+			mimeType: 'application/json',
+			success: function(retVal){
+				if(retVal.result == '1'){
+					alert('가입성공');
+				} else if(retVal.result == '-1'){
+					alert('가입실패');
+				}
+			},
+			error: function(retVal, status, er){
+				console.log("error: "+retVal+" status: "+status+" er:"+er);
+			}
+		});
+	});
+});
+</script>
 </html>
