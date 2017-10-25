@@ -35,7 +35,7 @@ public class LoginServiceImpl implements UserDetailsService{
 		
 		//데이터베이스에서 데이터가 있는지 검증//
 		userAuthDao.findAll();
-		List<UserAuth> userinfo = userAuthDao.getUserAuthInfo(userid);
+		List<UserAuth> userinfo = userAuthDao.getUserAuthInfo(passwordEncoder.encodePassword(userid, null));
 		
 		//null이면 해당 유저정보가 없다는 의미//
 		if(userinfo == null){
@@ -48,13 +48,18 @@ public class LoginServiceImpl implements UserDetailsService{
 			System.out.println("==> user id: " + userinfo.get(0).getUser_id());
 			System.out.println("==> user password: " + userinfo.get(0).getUser_password());
 			System.out.println("==> user role: " + userinfo.get(0).getRole());
+			System.out.println("user id encrypt: " + passwordEncoder.encodePassword(userinfo.get(0).getUser_id(), null));
 			System.out.println("password encode: " + passwordEncoder.encodePassword(userinfo.get(0).getUser_password(), null));
 			
 			Collection<SimpleGrantedAuthority> roles = new ArrayList<SimpleGrantedAuthority>();
 
 		    roles.add(new SimpleGrantedAuthority(userinfo.get(0).getRole()));
 		    
-		    user = new User(userinfo.get(0).getUser_id(), passwordEncoder.encodePassword(userinfo.get(0).getUser_password(), null), roles);
+		    user = new User(
+		    		userinfo.get(0).getUser_id(), 
+		    		passwordEncoder.encodePassword(userinfo.get(0).getUser_password(), null), 
+		    		roles
+		    );
 
 			System.out.println("Auth Checking Success...");
 			

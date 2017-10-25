@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -22,6 +23,9 @@ import com.homeiot.application.service.AuthService;
 public class AuthAjaxController {
 	@Autowired
 	AuthService authService;
+	
+	@Autowired
+	ShaPasswordEncoder passwordEncoder;
 	
 	@RequestMapping(value = "/logoutajax", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> logout(HttpServletRequest request, HttpServletResponse response) {
@@ -63,7 +67,7 @@ public class AuthAjaxController {
 			
 		Map<String, Object> retVal = new HashMap<String, Object>(); 
 		
-		int resultCode = authService.dupCheckService(info.get("in_user_id").toString(), info.get("in_type").toString());
+		int resultCode = authService.dupCheckService(passwordEncoder.encodePassword(info.get("in_user_id").toString(),null), info.get("in_type").toString());
 		
 		System.out.println("result code: " + resultCode);
 		
@@ -86,7 +90,7 @@ public class AuthAjaxController {
 		
 		int resultCode = authService.enrollService(
 				info.get("in_type").toString(),
-				info.get("in_user_id").toString(),
+				passwordEncoder.encodePassword(info.get("in_user_id").toString(), null),
 				info.get("in_userpassword").toString(),
 				info.get("in_username").toString(),
 				info.get("in_useraddress").toString(),

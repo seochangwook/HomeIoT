@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,6 +47,8 @@ public class RouterController {
 			//세션 등록//
 			//사용자 정보 출력(세션)//
 			User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			
+			System.out.println("****user id: " + user.getUsername());
 			
 			//유저의 기본 정보를 가져온다.//
 			List<UserInfo> userinfo = userDataService.getUserInfo(user.getUsername());
