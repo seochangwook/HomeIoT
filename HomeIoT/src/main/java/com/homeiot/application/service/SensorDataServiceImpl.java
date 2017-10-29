@@ -27,10 +27,10 @@ public class SensorDataServiceImpl implements SensorDataService{
 	}
 
 	@Override
-	public int lightdataSave(String room1value, String room2value, String room3value, String date, String user_id) {
+	public int lightdataSave(String room1value, String room2value, String room3value, String date, String user_id, String room1onoffflag, String room2onoffflag, String room3onoffflag) {
 		sensorDataDao.findAll();
 		
-		return sensorDataDao.saveLightSensorData(room1value, room2value, room3value, date, user_id);
+		return sensorDataDao.saveLightSensorData(room1value, room2value, room3value, date, user_id, room1onoffflag, room2onoffflag, room3onoffflag);
 	}
 
 	@Override
@@ -38,5 +38,20 @@ public class SensorDataServiceImpl implements SensorDataService{
 		sensorDataDao.findAll();
 		
 		return sensorDataDao.getSensordata(sensor_id, user_id);
+	}
+
+	@Override
+	public int lightOnOffUpgrade(String user_id, String sensor_id, String roomnumber, String roomonoffflag) {
+		sensorDataDao.findAll();
+		
+		if(roomnumber.equals("sensor_value_1_on_off_flag")){
+			return sensorDataDao.updateRoom1OnOffStatus(roomonoffflag, sensor_id, user_id);
+		} else if(roomnumber.equals("sensor_value_2_on_off_flag")){
+			return sensorDataDao.updateRoom2OnOffStatus(roomonoffflag, sensor_id, user_id);
+		} else if(roomnumber.equals("sensor_value_3_on_off_flag")){
+			return sensorDataDao.updateRoom3OnOffStatus(roomonoffflag, sensor_id, user_id);
+		} else{
+			return 0;
+		}
 	}
 }

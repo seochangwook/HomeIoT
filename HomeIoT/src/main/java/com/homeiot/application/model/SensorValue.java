@@ -35,6 +35,15 @@ public class SensorValue {
 	@Column(name="sensor_modify_date")
 	private String sensor_modify_date;
 
+	@Column(name="sensor_value_1_on_off_flag")
+	private String sensor_value_1_on_off_flag;
+
+	@Column(name="sensor_value_2_on_off_flag")
+	private String sensor_value_2_on_off_flag;
+	
+	@Column(name="sensor_value_3_on_off_flag")
+	private String sensor_value_3_on_off_flag;
+	
 	public SensorValueCompositeKey getId() {
 		return id;
 	}
@@ -91,4 +100,27 @@ public class SensorValue {
 		this.sensor_modify_date = sensor_modify_date;
 	}
 	
+	public String getSensor_value_1_on_off_flag() {
+		return sensor_value_1_on_off_flag;
+	}
+
+	public void setSensor_value_1_on_off_flag(String sensor_value_1_on_off_flag) {
+		this.sensor_value_1_on_off_flag = sensor_value_1_on_off_flag;
+	}
+
+	public String getSensor_value_2_on_off_flag() {
+		return sensor_value_2_on_off_flag;
+	}
+
+	public void setSensor_value_2_on_off_flag(String sensor_value_2_on_off_flag) {
+		this.sensor_value_2_on_off_flag = sensor_value_2_on_off_flag;
+	}
+
+	public String getSensor_value_3_on_off_flag() {
+		return sensor_value_3_on_off_flag;
+	}
+
+	public void setSensor_value_3_on_off_flag(String sensor_value_3_on_off_flag) {
+		this.sensor_value_3_on_off_flag = sensor_value_3_on_off_flag;
+	}
 }

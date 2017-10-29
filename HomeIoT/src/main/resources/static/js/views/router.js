@@ -15,4 +15,8 @@ app.config(['$stateProvider', function($stateProvider){
 		url: '/light',
 		templateUrl: 'light',
 	})
+	.state('tip',{
+		url: '/tip',
+		templateUrl: 'tip',
+	})
 }]);

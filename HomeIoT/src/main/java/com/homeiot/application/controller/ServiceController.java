@@ -30,12 +30,18 @@ public class ServiceController {
 	@Value("${lightsensor_id}")
 	private String lightsensor_id;
 	
+	@Value("${server.address}")
+	private String serverIP;
+	
+	@Value("${server.port}")
+	private String serverPORT;
+	
 	@Autowired
 	SensorDataService sensorDataService;
 	
 	@RequestMapping(value = "/temphumi", method = RequestMethod.GET)
     public ModelAndView temphumiService(ModelAndView mv, HttpServletRequest request, HttpServletResponse response){
-		System.out.println("normal main page");
+		System.out.println("normal temphumi page");
 		
 		mv.setViewName("/service/temphumipage");
 		
@@ -56,7 +62,7 @@ public class ServiceController {
 	
 	@RequestMapping(value = "/light", method = RequestMethod.GET)
     public ModelAndView lightService(ModelAndView mv, HttpServletRequest request, HttpServletResponse response){
-		System.out.println("normal main page");
+		System.out.println("normal light page");
 		
 		mv.setViewName("/service/lightpage");
 		
@@ -68,9 +74,27 @@ public class ServiceController {
 
 		System.out.println("sensor id: " + data.get(0).getId().getSensor_id());
 		
+		mv.addObject("serverip", serverIP);
+		mv.addObject("serverport", serverPORT);
+		mv.addObject("user_id", user.getUsername().toString());
+		mv.addObject("lightsensor_id", lightsensor_id);
+		
 		mv.addObject("room1value", data.get(0).getSensor_value_1());
 		mv.addObject("room2value", data.get(0).getSensor_value_2());
 		mv.addObject("room3value", data.get(0).getSensor_value_3());
+		
+		mv.addObject("room1valueonoff", data.get(0).getSensor_value_1_on_off_flag());
+		mv.addObject("room2valueonoff", data.get(0).getSensor_value_2_on_off_flag());
+		mv.addObject("room3valueonoff", data.get(0).getSensor_value_3_on_off_flag());
+		
+		return mv;
+    }
+	
+	@RequestMapping(value = "/tip", method = RequestMethod.GET)
+    public ModelAndView tipService(ModelAndView mv, HttpServletRequest request, HttpServletResponse response){
+		System.out.println("normal tip page");
+		
+		mv.setViewName("/service/tippage");
 		
 		return mv;
     }

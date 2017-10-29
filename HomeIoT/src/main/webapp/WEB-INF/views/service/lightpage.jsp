@@ -17,9 +17,18 @@
     <script src="/js/talkify/talkify.min.js"></script>
 </head>
 <body>
+	<input type="hidden" id="serverip" value="${serverip}">
+	<input type="hidden" id="serverport" value="${serverport}">
+	<input type="hidden" id="userid" value="${user_id}">
+	<input type="hidden" id="lightsensor_id" value="${lightsensor_id}">
+	
 	<input type="hidden" id="room1value" value="${room1value}">
 	<input type="hidden" id="room2value" value="${room2value}">
 	<input type="hidden" id="room3value" value="${room3value}">
+	
+	<input type="hidden" id="room1valueonoff" value="${room1valueonoff}">
+	<input type="hidden" id="room2valueonoff" value="${room2valueonoff}">
+	<input type="hidden" id="room3valueonoff" value="${room3valueonoff}">
 	<div>
 		<input type="button" id="infobutton" value="요약">
 	</div>
@@ -34,6 +43,12 @@
 		<c:if test="${room1value <= 120}">
 			<img style="margin: auto" width="120" height="120" src="/images/light_on.png">
 		</c:if>
+		<c:if test="${room1valueonoff == 0}">
+			<input type="button" id="light1_on_button" value="불 켜기">
+		</c:if>
+		<c:if test="${room1valueonoff == 1}">
+			<input type="button" id="light1_off_button" value="불 끄기">
+		</c:if>
 	</div>
 	<div id="room2">
 		<label>* 침실 2</label>
@@ -43,6 +58,12 @@
 		<c:if test="${room2value <= 120}">
 			<img style="margin: auto" width="120" height="120" src="/images/light_on.png">
 		</c:if>
+		<c:if test="${room2valueonoff == 0}">
+			<input type="button" id="light2_on_button" value="불 켜기">
+		</c:if>
+		<c:if test="${room2valueonoff == 1}">
+			<input type="button" id="light2_off_button" value="불 끄기">
+		</c:if>
 	</div>
 	<div id="room3">
 		<label>* 침실 3</label>
@@ -51,6 +72,12 @@
 		</c:if>
 		<c:if test="${room3value <= 120}">
 			<img style="margin: auto" width="120" height="120" src="/images/light_on.png">
+		</c:if>
+		<c:if test="${room3valueonoff == 0}">
+			<input type="button" id="light3_on_button" value="불 켜기">
+		</c:if>
+		<c:if test="${room3valueonoff == 1}">
+			<input type="button" id="light3_off_button" value="불 끄기">
 		</c:if>
 	</div>
 	<br>
@@ -88,6 +115,246 @@ $(function(){
 		
 		//데이터 셋팅//
 		player.playText(infostr);
+	});
+	$('#light1_on_button').click(function(){
+		var infostr = "";
+		
+		var player = new talkify.Html5Player();
+		
+		var serverip = $('#serverip').val();
+		var serverport = $('#serverport').val();
+		var userid = $('#userid').val();
+		var lightsensor_id = $('#lightsensor_id').val();
+		var room_number = 'sensor_value_1_on_off_flag';
+		var onoffflag = '1';
+		
+		var trans_objeect = 
+		{
+		    'user_id':userid,
+		    'sensor_id':lightsensor_id,
+		    'room_number':room_number,
+		    'onoffflag':onoffflag
+		}
+		var trans_json = JSON.stringify(trans_objeect); //json으로 반환//
+			
+		$.ajax({
+			url: "http://"+serverip+":"+serverport+"/lightonoffupdate",
+			type: 'POST',
+			dataType: 'json',
+			data: trans_json,
+			contentType: 'application/json',
+			mimeType: 'application/json',
+			success: function(retVal){
+				console.log(retVal.result);
+				
+				infostr = '침실1 불이 켜집니다.';
+				//데이터 셋팅//
+				player.playText(infostr);
+			},
+			error: function(retVal, status, er){
+				console.log("error: "+retVal+" status: "+status+" er:"+er);
+			}
+		});
+	});
+	$('#light1_off_button').click(function(){
+		var infostr = "";
+		
+		var player = new talkify.Html5Player();
+		
+		var serverip = $('#serverip').val();
+		var serverport = $('#serverport').val();
+		var userid = $('#userid').val();
+		var lightsensor_id = $('#lightsensor_id').val();
+		var room_number = 'sensor_value_1_on_off_flag';
+		var onoffflag = '0';
+
+		var trans_objeect = 
+		{
+		    'user_id':userid,
+		    'sensor_id':lightsensor_id,
+		    'room_number':room_number,
+		    'onoffflag':onoffflag
+		}
+		var trans_json = JSON.stringify(trans_objeect); //json으로 반환//
+			
+		$.ajax({
+			url: "http://"+serverip+":"+serverport+"/lightonoffupdate",
+			type: 'POST',
+			dataType: 'json',
+			data: trans_json,
+			contentType: 'application/json',
+			mimeType: 'application/json',
+			success: function(retVal){
+				console.log(retVal.result);
+				
+				infostr = '침실1 불이 꺼집니다.';
+				//데이터 셋팅//
+				player.playText(infostr);
+			},
+			error: function(retVal, status, er){
+				console.log("error: "+retVal+" status: "+status+" er:"+er);
+			}
+		});
+	});
+	$('#light2_on_button').click(function(){
+		var infostr = "";
+		
+		var player = new talkify.Html5Player();
+		
+		var serverip = $('#serverip').val();
+		var serverport = $('#serverport').val();
+		var userid = $('#userid').val();
+		var lightsensor_id = $('#lightsensor_id').val();
+		var room_number = 'sensor_value_2_on_off_flag';
+		var onoffflag = '1';
+		
+		var trans_objeect = 
+		{
+		    'user_id':userid,
+		    'sensor_id':lightsensor_id,
+		    'room_number':room_number,
+		    'onoffflag':onoffflag
+		}
+		var trans_json = JSON.stringify(trans_objeect); //json으로 반환//
+			
+		$.ajax({
+			url: "http://"+serverip+":"+serverport+"/lightonoffupdate",
+			type: 'POST',
+			dataType: 'json',
+			data: trans_json,
+			contentType: 'application/json',
+			mimeType: 'application/json',
+			success: function(retVal){
+				console.log(retVal.result);
+				
+				infostr = '침실2 불이 켜집니다.';
+				//데이터 셋팅//
+				player.playText(infostr);
+			},
+			error: function(retVal, status, er){
+				console.log("error: "+retVal+" status: "+status+" er:"+er);
+			}
+		});
+	});
+	$('#light2_off_button').click(function(){
+		var infostr = "";
+		
+		var player = new talkify.Html5Player();
+		
+		var serverip = $('#serverip').val();
+		var serverport = $('#serverport').val();
+		var userid = $('#userid').val();
+		var lightsensor_id = $('#lightsensor_id').val();
+		var room_number = 'sensor_value_2_on_off_flag';
+		var onoffflag = '0';
+
+		var trans_objeect = 
+		{
+		    'user_id':userid,
+		    'sensor_id':lightsensor_id,
+		    'room_number':room_number,
+		    'onoffflag':onoffflag
+		}
+		var trans_json = JSON.stringify(trans_objeect); //json으로 반환//
+			
+		$.ajax({
+			url: "http://"+serverip+":"+serverport+"/lightonoffupdate",
+			type: 'POST',
+			dataType: 'json',
+			data: trans_json,
+			contentType: 'application/json',
+			mimeType: 'application/json',
+			success: function(retVal){
+				console.log(retVal.result);
+				
+				infostr = '침실2 불이 꺼집니다.';
+				//데이터 셋팅//
+				player.playText(infostr);
+			},
+			error: function(retVal, status, er){
+				console.log("error: "+retVal+" status: "+status+" er:"+er);
+			}
+		});
+	});
+	$('#light3_on_button').click(function(){
+		var infostr = "";
+		
+		var player = new talkify.Html5Player();
+		
+		var serverip = $('#serverip').val();
+		var serverport = $('#serverport').val();
+		var userid = $('#userid').val();
+		var lightsensor_id = $('#lightsensor_id').val();
+		var room_number = 'sensor_value_3_on_off_flag';
+		var onoffflag = '1';
+		
+		var trans_objeect = 
+		{
+		    'user_id':userid,
+		    'sensor_id':lightsensor_id,
+		    'room_number':room_number,
+		    'onoffflag':onoffflag
+		}
+		var trans_json = JSON.stringify(trans_objeect); //json으로 반환//
+			
+		$.ajax({
+			url: "http://"+serverip+":"+serverport+"/lightonoffupdate",
+			type: 'POST',
+			dataType: 'json',
+			data: trans_json,
+			contentType: 'application/json',
+			mimeType: 'application/json',
+			success: function(retVal){
+				console.log(retVal.result);
+				
+				infostr = '침실3 불이 켜집니다.';
+				//데이터 셋팅//
+				player.playText(infostr);
+			},
+			error: function(retVal, status, er){
+				console.log("error: "+retVal+" status: "+status+" er:"+er);
+			}
+		});
+	});
+	$('#light3_off_button').click(function(){
+		var infostr = "";
+		
+		var player = new talkify.Html5Player();
+		
+		var serverip = $('#serverip').val();
+		var serverport = $('#serverport').val();
+		var userid = $('#userid').val();
+		var lightsensor_id = $('#lightsensor_id').val();
+		var room_number = 'sensor_value_3_on_off_flag';
+		var onoffflag = '0';
+
+		var trans_objeect = 
+		{
+		    'user_id':userid,
+		    'sensor_id':lightsensor_id,
+		    'room_number':room_number,
+		    'onoffflag':onoffflag
+		}
+		var trans_json = JSON.stringify(trans_objeect); //json으로 반환//
+			
+		$.ajax({
+			url: "http://"+serverip+":"+serverport+"/lightonoffupdate",
+			type: 'POST',
+			dataType: 'json',
+			data: trans_json,
+			contentType: 'application/json',
+			mimeType: 'application/json',
+			success: function(retVal){
+				console.log(retVal.result);
+				
+				infostr = '침실3 불이 꺼집니다.';
+				//데이터 셋팅//
+				player.playText(infostr);
+			},
+			error: function(retVal, status, er){
+				console.log("error: "+retVal+" status: "+status+" er:"+er);
+			}
+		});
 	});
 });
 </script>

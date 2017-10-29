@@ -21,6 +21,11 @@
 	<!-- Zebra-Dialog CDN -->
 	<script src="/js/dialog/zebra_dialog.src.js"></script>
 	<link rel="stylesheet" href="/css/dialog/zebra_dialog.css" type="text/css"/>
+	<!-- jqGrid CDN & paging -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqgrid/4.6.0/css/ui.jqgrid.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqgrid/4.6.0/js/i18n/grid.locale-en.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqgrid/4.6.0/js/jquery.jqGrid.min.js"></script>
+	<script src="/js/util/paginate.js"></script>
 	<!-- D3.js CDN & js file & css -->
 	<script src="http://d3js.org/d3.v3.min.js" language="JavaScript"></script>
 	<script src="/js/d3/liquidFillGauge.js"></script>
@@ -52,6 +57,7 @@
     		<ul class="nav navbar-nav">
 		      	<li><a href="#!temphumi">우리집 온도/습도</a></li>
 		    	<li><a href="#!light">우리집 조도량</a></li>
+		    	<li><a href="#!tip">실생활 팁</a></li>
     		</ul>
     		<ul class="nav navbar-nav navbar-right">
     			<c:if test="${userid == null}">
