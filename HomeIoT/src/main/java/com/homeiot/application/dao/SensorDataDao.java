@@ -93,4 +93,18 @@ public interface SensorDataDao extends JpaRepository<SensorValue, String>{
 			@Param("sensor_id") String sensor_id,
 			@Param("user_id") String user_id
 	);
+	
+	@Transactional
+	@Modifying
+	@Query(nativeQuery = true, value=
+			"UPDATE sensorvalue "
+			+ "SET sensor_value_1 = :motionvalue, sensor_modify_date = :modifydate "
+			+ "WHERE sensor_id = :sensor_id AND user_id like %:user_id%"
+	)
+	int motiondataSave(
+			@Param("motionvalue") String motionvalue,
+			@Param("modifydate") String modifydate,
+			@Param("sensor_id") String sensor_id,
+			@Param("user_id") String user_id
+	);
 }

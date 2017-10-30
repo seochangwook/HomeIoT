@@ -12,4 +12,5 @@ public interface SensorDataService {
 	public List<SensorValue> gettemphumidata(String sensor_id, String user_id);
 	public List<SensorValue> getlightdata(String sensor_id, String user_id);
 	public int lightOnOffUpgrade(String user_id, String sensor_id, String roomnumber, String roomonoffflag);
+	public int motiondataSave(String motionvalue, String sensor_id, String user_id, String date);
 }

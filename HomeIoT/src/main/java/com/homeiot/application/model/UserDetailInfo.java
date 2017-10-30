@@ -24,6 +24,9 @@ public class UserDetailInfo {
 	
 	@Column(name="user_name")
 	private String user_name;
+	
+	@Column(name="mailpush_use")
+	private String mailpush_use;
 
 	@OneToMany 
 	@JoinColumn(name="user_id") 
@@ -67,5 +70,13 @@ public class UserDetailInfo {
 
 	public void setUser_name(String user_name) {
 		this.user_name = user_name;
+	}
+	
+	public String getMailpush_use() {
+		return mailpush_use;
+	}
+
+	public void setMailpush_use(String mailpush_use) {
+		this.mailpush_use = mailpush_use;
 	}
 }

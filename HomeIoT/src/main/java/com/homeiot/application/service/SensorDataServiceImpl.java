@@ -54,4 +54,11 @@ public class SensorDataServiceImpl implements SensorDataService{
 			return 0;
 		}
 	}
+
+	@Override
+	public int motiondataSave(String motionvalue, String sensor_id, String user_id, String date) {
+		sensorDataDao.findAll();
+		
+		return sensorDataDao.motiondataSave(motionvalue, date, sensor_id, user_id);
+	}
 }
