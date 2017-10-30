@@ -8,4 +8,5 @@
 <li>Ajax</li>
 <li>D3js</li>
 <li>TTS</li>
+<li>jqGrid</li>
 </div>
