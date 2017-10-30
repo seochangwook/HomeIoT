@@ -23,8 +23,8 @@
 	<link rel="stylesheet" href="/css/dialog/zebra_dialog.css" type="text/css"/>
 	<!-- jqGrid CDN & paging -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqgrid/4.6.0/css/ui.jqgrid.css" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqgrid/4.6.0/js/i18n/grid.locale-en.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqgrid/4.6.0/js/jquery.jqGrid.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqgrid/4.6.0/js/i18n/grid.locale-en.js"></script>
 	<script src="/js/util/paginate.js"></script>
 	<!-- D3.js CDN & js file & css -->
 	<script src="http://d3js.org/d3.v3.min.js" language="JavaScript"></script>

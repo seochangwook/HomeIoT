@@ -22,7 +22,7 @@
 	<div>
 		<c:url value="/j_spring_security_check" var="loginUrl" />
 		<form action="${loginUrl}" method="POST">
-        	ID : <input type="text" name="j_username" size="20" maxlength="50" /><br />
+        	ID : <input type="text" name="j_username" size="20" maxlength="50" /><br/>
         	Password : <input type="password" name="j_password" size="20" maxlength="50" /><br/>
         	<br>
         	<input type="submit" value="Login" />
@@ -36,31 +36,37 @@
 	    	<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 	    	<li data-target="#myCarousel" data-slide-to="1"></li>
 	    	<li data-target="#myCarousel" data-slide-to="2"></li>
+	    	<li data-target="#myCarousel" data-slide-to="3"></li>
 	  	</ol>
 
   		<!-- Wrapper for slides -->
   		<div class="carousel-inner" role="listbox">
     		<div class="item active">
-      			<img src="/images/tempinfo.png" alt="New York" style="margin: auto" width="420" height="420">
-     		<div class="carousel-caption">
-        		<h3>온도</h3>
-        		<p>현재 집 안의 온도정보를 알 수 있습니다.</p>
-      		</div> 
-    	</div>
-
-    	<div class="item">
-	    	<img src="/images/humiinfo.png" alt="Chicago" style="margin: auto" width="420" height="420">
-	      	<div class="carousel-caption">
-	        	<h3>습도</h3>
-	        	<p>현재 집 안의 습도정보를 알 수 있습니다.</p>
-	      	</div> 
-	    </div>
-	
-	    <div class="item">
-	    	<img src="/images/lightinfo.png" alt="Los Angeles" style="margin: auto" width="420" height="420">
+      			<img src="/images/tempinfo.png" alt="temp" style="margin: auto" width="420" height="420">
+     			<div class="carousel-caption">
+        			<h3>온도</h3>
+        			<p>현재 집 안의 온도정보를 알 수 있습니다.</p>
+      			</div> 
+    		</div>
+    		<div class="item">
+	    		<img src="/images/humiinfo.png" alt="humi" style="margin: auto" width="420" height="420">
+	      		<div class="carousel-caption">
+	        		<h3>습도</h3>
+	        		<p>현재 집 안의 습도정보를 알 수 있습니다.</p>
+	      		</div> 
+	    	</div>
+	    	<div class="item">
+	    		<img src="/images/lightinfo.png" alt="light" style="margin: auto" width="420" height="420">
 	      		<div class="carousel-caption">
 	        		<h3>조도량</h3>
-	        		<p>현재 집 안의 불이 켜진곳과 꺼진곳을 알 수 있습니다.</p>
+	        		<p>현재 집 안의 불이 켜진곳과 꺼진곳을 알 수 있습니다. 버튼으로 현재 집안의 불을 키고 끌 수 있습니다.</p>
+	      		</div> 
+	    	</div>
+	    	<div class="item">
+	    		<img src="/images/motioninfo.png" alt="motion" style="margin: auto" width="420" height="420">
+	      		<div class="carousel-caption">
+	        		<h3>우리집 지킴이</h3>
+	        		<p>현관문 앞 움직임이 감지되면 확인 알림 메일을 보내드립니다.</p>
 	      		</div> 
 	    	</div>
 		</div>
@@ -77,7 +83,7 @@
 	</div>
 	
 	
-	<!-- Modal -->
+	<!-- Enroll Modal -->
   	<div class="modal fade" id="myModal" role="dialog">
     	<div class="modal-dialog modal-lg">
       		<div class="modal-content">
